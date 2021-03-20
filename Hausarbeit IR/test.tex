@@ -1,0 +1,178 @@
+\documentclass[11pt,a4paper,twoside,openright]{scrbook}
+\usepackage{clba}
+
+% Per Kapitel Nummerierung von Graphiken und Tabellen
+\usepackage{chngcntr}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
+
+% Hier die eigenen Daten eintragen
+\global\fach{Computerlinguistik}
+\global\arbeit{Hausarbeit}
+\global\titel{Welche Auswirkungen hat die Wahl des Information-Retrieval-Modells auf das Ranking?}
+\global\bearbeiter{Manuel Pleier}
+\global\matrikelnummer{11575278}
+\global\mail{Manuel.Pleier@campus.lmu.de}
+\global\universitaet{Ludwig- Maximilians- Universität München}
+\global\fakultaet{Fakultät für Sprach- und Literaturwissenschaften}
+\global\department{Department 2}
+
+\global\ort{München}
+
+
+\begin{document}
+
+% Deckblatt
+\deckblatt
+
+\pagestyle{scrheadings}
+\pagenumbering{gobble}
+
+% Erklärung fürs Prüfungsamt
+
+
+
+% Zusammenfassung
+\thispagestyle{scrplain}
+\noindent
+
+% Inhaltsverzeichnis
+\pagenumbering{Roman}
+
+\tableofcontents
+
+% Text mit arabischer Nummerierung
+\pagenumbering{arabic}
+
+\chapter{Kapitel Eins}
+
+\section{Einleitung}
+Information Retrieval ist ein wichtiger Bestandteil der Informatik und der maschinellen Sprachverarbeitung, um Informationen, in geordneter Weise, zu erhalten. Mit Informationen sind Daten in digitaler Form gemeint, da nur diese maschinell verarbeitet werden können. Sei es im Word Wide Web oder in Textkollektionen jeglicher Art, ob Bibliothektsdatenbanken oder firmeninterner Wissenssammlungen, meist sind die zu durchsuchenden Daten so umfangreich, dass sie schlichtweg von Menschenhand nicht mehr kontrollierbar sind. Somit müssen Denkansätze, Methoden und Modelle entwickelt werden um diese Informationen verarbeiten zu können und nach Relevanz sortiert zu präsentieren. Es gibt eine Vielzahl an Suchmaschinen und Arten von Suchmaschinen, welche auf verschienste Art und Weise fungieren. Für den Nutzer sind die Zusammenhänge zwischen einer Nutzeranfrage und der Datenlieferung allerdings nicht immer direkt ersichtlich, weshalb diese Arbeit versucht drei grundlegende Modelle der Information Retrieval zu erläutern und die Komplikationen eines Rankings aufzuzeigen.
+
+
+
+\subsection{Definition Information Retrieval}
+Information Retrieval kann als die Wissenschaft bezeichnet werden, bei der Informationssysteme in Bezug auf ihre Rolle bei Wissenstransferen zwischen menschlichen Wissensproduzenten und Informations-Nachfragenden betrachtet werden, wie es die Fachgruppe für Information Retrieval der Gesellschaft für Informatik bezeichnet\footnote{Fachgruppe Information Retrieval in der Gesellschaft für Informatik (GI), \url{https://fg-retrieval.gi.de/ueber-die-fachgruppe/}} Speziell diese Fachgruppe beschäftigt sich mit Problematiken wie Datenmodellierung und Wissensrepräsentationen, Modelle für Information Retrieval, der Gestaltung von Benuterschnittstellen, der Implementierung von IR-Systemen oder Anwendungen von IR Systemen\footnote{Siehe [1]}. Diese Problematiken sind diejenigen, welche bei der Untersuchung von Information Retrieval-Systemen zu bewältigen sind. 
+
+\subsection{Das Ziel der Arbeit}
+Als Ziel dieser Arbeit gilt es, drei verschiedene Information Retrieval Modelle vorzustellen und deren Auswirkungen auf das gesamte Ranking zu evaluieren. Die drei verschiedenen Arten von Modelle, das Boolesche Modell, das Vektorraummodell und das Probabilistische Modell werden jeweils vorgestellt, wobei spezifisch auf die jeweiligen Vor- und Nachteile der Modelle eingegangen wird. Danach wird erläutert, welche Vorteile diese Modelle beim Ranking der Informationen hat. 
+
+
+\chapter{Kapitel Zwei}
+
+\section{Boolesches Modell}
+Das Boolesche Modell ist das erste entwickelte und eingesetzte Modell für Information Retrieval. Es basiert sowohl auf der booleschen Algebra und der mathematischen Mengenlehre. Hierbei bestehen Suchanfragen aus booleschen Ausdrücken und den Operatoren AND, OR, und/oder NOT. Da bei diesem Modell jedes Dokument als eine Kollektion von Worten betrachtet wird, ist es einfach festzustellen ob ein gesuchtes Wort in einem Dokument vorkommt oder nicht. Da dieses Modell keine Möglichkeit bietet, Eingabewörter nach Relevanz einzustufen, kann nicht unterschieden werden ob manche Eingaben wichtiger sind als andere und somit werden nur Dokumente aufgefunden, welche die komplette Suchanfrage beinhalten\cite{Massimo Melucci}. Somit sind auch die Ergebnisse dieses Modells nicht zu vernachlässigen, da bei zu spezifischen Anfragen sehr wenige bis garkeine relevanten Dokumente aufgefunden werden und bei sehr vagen Anfragen hingegen zu viele Dokumente selektiert werden. Durch die Eigenschaft der booleschen Algebra, Suchergebnisse nur binär zu selektieren, also vereinfacht gesagt Dokumente entweder zu finden oder nicht zu finden, können Dokumente auch nicht nach Relevanz sortiert werden. Es kann lediglich festgestellt werden ob besagter Term in einem Dokument vorkommt oder nicht. 
+\subsection{Vorteile}
+Die Vorteile dieses Modells sind ersichtlich, da dieses Modell auf der Mengenlehre basiert und somit sowohl relativ einfach zu implementieren, aber auch schnell logisch nachvollziehbar ist. Da, wie bereits in der Erklärung des Modells erwähnt, die Suchergebnisse in direktem Zusammenhang mit der Suchanfrage des Benutzers stehen, ist es möglich die Suchanfrage so zu formulieren, dass spezifische und gesuchte Dokumente aufgefunden werden. Somit können einerseits bestimmte Dokumente aus der Suche ausgeschlossen werden, dagegen andere Dokumente explizit mit in die Suche aufgenommen werden. 
+\subsection{Nachteile}
+Die Nachteile dieses Modells sind jedoch nicht zu vernachlässigen. Durch die Implementierungsform des Modells können Dokumente nur binär sortiert werden, in \glqq{} gefunden\grqq{} und \glqq{} gesucht\grqq{}. So ist es allerdings nicht möglich, Dokumente nach Relevanz zu sortieren, womit auch kein Ranking der gefundenen Dokumente erstellt werden kann. Des weiteren können nicht nur Dokumente nicht nach Relevanz geordnet werden, sondern auch die Suchanfragen selbst. Da es sich hier um boolsche Aussagen handelt, können mit den vorhandenen Junktoren lediglich Suchbegriffe eingeschlossen oder ausgeschlossen werden, jedoch gibt es keine Möglichkeit diese nach Relevanz zu sortieren, womit es schwierig werden könnte, bestimmte Wörter wie zum Beispiel Artikel oder Präpositionen aus der Suche auszuschließen. Für Benutzer, welche nicht mit der booleschen Algebra oder der Mengenlehre vertraut sind, könnte dies ein erhebliches Problem in der Konkretisierung der Suchanfrage und somit im Ergebnis hervorrufen.
+
+
+\section{Vektorraummodell}
+Dieses Modell beruht auf, wie es der Name schon vermuten lässt, Vektoren um Daten zu repräsentieren. Hierbei ist der Vektorraum ein multidimensionaler Vektorraum, dessen Dimensionen der Größe des Vokabulars entsprechen. Die Terme definieren die Achsen im Vektorraum, die Dokumente und Suchanfragen stehen als Vektoren im Raum. Die Term-Vektoren bilden einen orthogonalen Vektorraum, das bedeutet, dass das Skalarprodukt der Vektoren gleich 0 ist. Zudem werden die Vektoren normiert, da ansonsten Dokumente oder Suchanfragen mit mehr Begriffen logischerweise auch als längere Vektoren dargestellt werden würden. Um dies entgegenzuwirken, werden die Vektoren alle mit der Zahl 1 normiert. In diesem Modell wird nach dem \glqq{} Bag-of-Words\grqq{} agiert, was bedeutet, dass jedes Wort einzeln betrachtet wird und keine Phrasen zusammengesetzt werden können\cite{Massimo Melucci}.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.4]{NormierungVektorraum.PNG}
+  \caption{Darstellung der Normierung von Vektoren im Vektorraummodell}
+\end{figure}
+Um die Abbildung 2.1 kurz zu erläutern, werden hier \glqq{} TF\grqq{} und \glqq{} IDF\grqq{} aller Wörter eines Textes mit 1 normiert, damit Vektoren einer einheitlichen Größe entsprechen. Hierbei stehen \glqq{} TF\grqq{} für \glqq{} Term Frequency\grqq{} und \glqq{} IDF\grqq{} für \glqq{} Inverse Document Frequency\grqq{}. Dies sind Maße, welche, kombiniert, Informationen über die Relevanz von Termen in Dokumenten oder Texten geben, da sie, im Falle von TF angeben wie oft ein Term in einem Dokument vorkommt und im Falle von IDF, angeben wie oft ein Term in der gesammten Dokumentenkollektion vorkommt. So können häufig auftretende Terme wie Artikel oder Ähnliches von wichtigen Termbegriffen unterschieden werden. 
+
+\paragraph{} Diese Einstufung der Terme ist wichtig, da das Vektorraummodell keine explizite Vorangehensweise zur Berechnung der Vektordaten bereitstellt. Da dies nicht gegeben wird, wird in der Information-Retrieval häufig das TF-IDF Maß verwendet, da es dort möglich ist die Wörter nach der Relevanz im Text zu unterscheiden. Natürlich könnte dies auch mit jeder anderen Darstellungsweise erzielt werden, als Beispiel wäre hier ein boolscher Ansatz zur Darstellung der Vektordaten denkbar, Terme die in einem Text auftreten mit einer 1 zu markieren und Terme die nicht im Text vorhanden sind mit einer 0 zu markieren, allerdings ist die TF-IDF Kategorisierung eben sinnvoller, da mit einer booleschen Methode keine Einstufung der Wörter nach Relevanz möglich ist.
+
+\paragraph{} Um nun aber die Relevanz der einzelnen aufgefundenen Dokumente zu berechnen, müssen Dokumente mit der Ähnlichkeit der Abfrage verglichen werden. Hierzu müssen lediglich die einzelnen Vektoren auf ihre Ähnlichkeit geprüft werden. Dies kann durch mehrere mathematische Verfahren gelöst werden, zum Beispiel der Kosinus-Ähnlichkeit der zu vergleichenden Vektoren. Da es sich hier speziell um ein karthesisches Koordinatensystem handelt, ist es möglich das Skalarprodukt so aufzulösen, dass daraus die Kosinus-Ähnlichkeit entsteht. Diese gibt letztendlich den Kosinus des Winkels zwischen zwei Vektoren an. Dieser Wert kann zwischen -1 und 1 liegen, wobei -1 für genau entgegengesetzte Vektoren steht, 1 für genau gleiche Vektoren und 0 für orthogonal, sprich im rechten Winkel zueinander stehende Vektoren steht. Das Ziel ist es somit Werte zwischen 0 und 1 zu erhalten, je höher der Wert ist, desto ähnlicher sind die Vektoren. 
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.4]{Kosinus.PNG}
+  \caption{Formel zur Kosinus-Ähnlichkeit}
+\end{figure}
+
+\subsection{Vorteile}
+Zu den Vorteilen dieses Modells kann sicher gezählt werden, dass hier, im Gegensatz zum Booleschen Modell, die Möglichkeit eines Rankings vorhanden ist. Da die Vektoren nach Ähnlichkeit klassifiziert werden, ist es möglich die Relevanz mit abfallender Ähnlichkeit der Vektoren zu der Suchanfrage, vom ähnlichsten zum unähnlichsten Dokument darzustellen. Eine weitere Möglichkeit die hier besteht, ist es die Ähnlichkeit zwischen zwei Dokumenten darzustellen, so können nicht nur Dokumente die ähnlich zur Suchanfrage sind, zurückgegeben werden, sondern auch Dokumente die anderen Dokumenten des Resultats ähnlich sind im Ranking entweder höher gestellt werden. So ist es für den Nutzer von Vorteil, da somit nicht relevante Dokumente durch Dokumente, welche zwar nicht den Suchbegriff beinhalten, aber dem gleichen Themengebiet angehören und anderen Dokumenten des Ergebnisses der Suchanfrage ähnlich sind, ersetzt werden können. Somit ist ein höherer, relevanter Informationsgehalt der Dokumente gegeben. 
+
+\subsection{Nachteile}
+Von Nachteil ist es einerseits, dass die Suchanfragen für den Nutzer nicht transparent sind und somit nicht immer eindeutig veränderbar sind, um das Ergebnis auf die Informatiosnotwendigkeit des Nutzers anzupassen. Da die Termgewichtung der einzelnen Terme in den Vektoren von diversen komplexen Mechanismen und Faktoren wie Normierungen oder TF-IDF abhängen, lässt sich die Suchanfrage für einen Nutzer nicht einfach mit logischen Vorgehensweisen anpassen, so wie es beim booleschen Modell der Fall ist. Zudem könnte es passieren, dass wichtige Terme der Suchanfrage durch zu häufiges auftreten in Dokumenten gerinder gewichtet werden und somit das Ergebnis der Suchanfrage verfälschen. 
+
+\paragraph{} Ein weiterer Negativpunkt ist, dass bei diesem Modell, wie schon gesagt nach dem \glqq{} Bag-of-words \grqq{} Prinzip gehandelt wird\cite{Massimo Melucci}. Das bedeutet dass alle Terme des Lexikons einzeln betrachtet werden. Somit können keine Phrasen als ganzes verarbeitet werden können, was dazu führen könnte dass Zusammenhänge entweder falsch identifiziert werden, oder relevante Begriffe wie Bindungswörter bei der Gewichtung der Terme untergehen und somit die Phrase nicht mehr erkannt wird.
+\paragraph{} Als letzten Nachteil wäre zu erwähnen, dass es unter Umständen kompliziert ist die Dokumentenkollektion zu erweitern. da die Terme den Vektorraum festlegen und diese Bestandteil der Dokumente sind, müsste bei jedem neuen Dokument auch der gesamte Vektorraum neu erstellt werden, was sowohl zeitaufwendig als auch anfällig für Fehler wäre. Somit müsste hier eine Richtlinie festgelegt werden, in wie fern hier vorgegangen werden sollte.
+
+\section{Probabilistisches Modell}
+
+Ein weiterer und sogleich auch der letzte in dieser Arbeit vorgestellter Ansatz ist das probabilistische Modell für Information Retrieval. Probabilistische Modelle der Information Retrieval sind dafür bekannt, am besten mit der Unsicherheit die diese beinhaltet umgehen zu können. Hiermit ist gemeint, dass es für Aufgaben der Information Retrieval keinen eindeutigen Lösungsweg gibt, denn es sind keine definierten Antworten auf eine Suchanfrage möglich. Es wird versucht, aproximativ eine exakte Antwort auf eine Fragestellung zu geben, jedoch sind selbst die Fragestellungen nur vage Formulierungen, die ein vages Ergebnis liefern. 
+
+\paragraph{} Bei den probabilistischen Modellen der Information Retrieval gibt es zwei tiefer erforschte Ansätze um dies umzusetzen. Einerseits gibt es klassische, relevanzorientierte Modelle wie zum Beispiel das \glqq{} Binary-Independence-Model\grqq{} und auf der anderen Seite statistische Sprachmodelle wie das \glqq{} Query Language Model\grqq{}. 
+
+\paragraph{} Beim Binary-Independence-Model wird versucht, die Wahrscheinlichkeit der Relevanz eines Dokumentes im Bezug auf eine Anfrage zu errechnen\cite{Norbert Fuhr}. Hierzu werden mathematische Techniken der Stochastik wie der Satz von Bayes und Chancen statt Wahrscheinlichkeiten verwendet, um die Relevanzwahrscheinlichkeit der Terme zu berechnen. Die einzelnen Terme eines Dokumentes werden zusätzlich als Vektor angesehen, wobei Terme die im Dokument vorkommen mit 1 repräsentiert und Terme die nicht vorkommen mit 0 repräsentiert werden, ähnlich wie im Vektorraummodell\cite{Schuetze}. Daher auch der Name \glqq{} binary\grqq{}, da die Terme binär eingeteilt werden. Zusätzlich wird angenommen, dass jedes Dokument und jeder Term unabhängig voneinander ist, um bessere Ergebnisse zu erzielen. Diese Annahme tritt auch im Satz von Bayes auf, auch bekannt unter dem Namen \glqq{} Naive Bayes\grqq{}. Dies ist auch der Ursprung des Namenteils \glqq{} independent\grqq{} des Models. Durch die letztendlich Kombination der Vektordarstellung der Terme, dem Satz von Bayes, der Chancen anstatt von Wahrscheinlichkeiten und einer verbundenen Abhängigkeit, lässt sich folgende Formel ableiten\cite{Schuetze}:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.6]{BIR-Model.PNG}
+  \caption{Formel für die Berechnung der Gewichte der Frageterme beim Binary Independence Model}
+\end{figure}
+
+
+\paragraph{} Obwohl das Binary-Independence-Model bereits auf probabilistische Ansätze setzt um Terme mit Hilfe von Wahrscheinlichkeiten im Ranking einzustufen, hat es das Problem, das die Indexierung hier nicht theoretisch fundiert ist, sondern auf händische Annahmen und Festlegungen basiert. Statistische Sprachmodelle hingegen betrachten Sprachen als eine Wortfolge, welche wiederrum durch eine stochastischen Prozess erzeugt wird. 
+Speziell auf das Query Language Model bezogen, bedeutet dies, dass das Modell aus N-Gramen, Symbolen und einer Wahrscheinlichkeitsfunktion besteht. Wichtig ist hierbei, dass diese N-Gramme n-stellig sein können, also mehr als nur ein Wort beinhalten können. Somit werden Dokumente als Sammlungen von N-Grammen definiert und Querys als Sprachmodelle. Danach wird wieder mit Hilfe vom Satz von Bayes, spezifischer vom naiven Satz von Bayes, da hier wieder eine Unabhängigkeitsannahme besteht, die Wahrscheinlichkeit berechnet, dass die Anfrage aus dem Sprachmodell eines Dokumentes berechnet wurde\cite{Massimo Melucci}. Somit wird eine Wahrscheinlichkeit geliefert, welche mit den Wahrscheinlichkeiten der anderen Dokumente der Sammlung abgeglichen werden kann und somit ein Ranking erstellt werden kann. Um zu vermeiden dass nicht vorkommende Symbole bei der Berechnung mit 0 markiert werden, werden speziell bei diesem Modell Methoden wie \glqq{} smooting\grqq{} \glqq{} mixing\grqq{} verwendet.
+
+\subsection{Vorteile} Dieser Ansatz für ein Information-Retrieval-Model bringt einige Vorteile gegenüber der zuvor genannten Modelle mit. Zum einen gibt es wie schon beim Vektorraummodell ein Ranking, was bedeutet dass Ergebnisse nicht nur zurückgegeben werden, sondern auch nach Relevanz sortiert werden können. Der Unterschied zu diesem Modell ist aber, dass hier der Unsicherheit einer vagen Anfrage und einer nicht vorgegebenen Antwort probabilistisch entgegengewirkt hat, was mit der Definition von Stochastik begründet werden kann.
+\paragraph{} Ein Vorteil eines statistischen Sprachmodells gegenüber eines herkömlichen probabilistischen Modells ist, dass die Indexierungsgewichte theoretisch fundiert sind. Somit gibt es keine unsicheren Annahmen und die Sprache selbst ist probabilistisch erstellt worden. Durch diese Eigenschaft ist auch, anders als bei dem Binary-Independence-Model, kein Algorithmus notwendig um die Gewichtung der Terme zu erstellen. 
+\paragraph{} Ein letzter Punkt der für ein solches Modell spricht, ist die Möglichkeit Phrasen als N-Gramme abzubilden und somit diese Zusammehänge besser evaluieren zu können.
+
+\subsection{Nachteile} Die Nachteile dieser Art von Modellen sind relativ gering, verglichen mit den vorherigen Modellen. Negativ fällt allerdings auf, dass es durch die unabhängige Betrachtung eines jeden Dokumentes in einer Dokumentensammlung dazu kommen kann, dass mehrmals die gleichen Dokumente erkannt werden können. Dies ist zwar mathematisch korrekt, allerdings für einen Nutzer wenig sinnvoll, da das Dokument nicht öfter als einmal benötigt wird. 
+\paragraph{} Zudem muss zusätzlich gesagt werden, dass auch hier die Relation zwischen Anfrage und Ergebnis für einen benutzer nur sehr schwer nachvollziehbar ist, weshalb auch hier, ähnlich wie beim Vektorraummodell eine Anpassung der Suchanfrage nur schwer umzusetzen ist, solange der Nutzer nicht mit der Materie vertraut ist.
+
+
+\chapter{Kapitel Drei}
+\section{Bedeutung von Ranking für einen Nutzer}
+Die hier vorgestellten Modelle würden so nicht existieren, wenn es nicht ein integraler Bestandteil der Information Retrieval wäre, gesuchte Dokumente nicht nur akkurat aufzufinden, so wie es beim booleschen Modell der Fall ist, sondern diese auch nach Relevanz zu ordnen. Mit einer Vielzahl von Webseiten im Internet, wäre es kaum möglich Informationen zu gewinnen, zumindest ohne angemessene Rankingmöglichkeiten. Hierbei spielt auch die Qualität des Rankings eine wichtige Rolle, nicht umsonst ist es ein integraler Bestandteil einer Firmenpolitik, ihre Website so zu optimieren dass sie zum Beispiel bei der Suchmaschine von Google möglichst weit oben im Ranking erscheint, damit diese Website häufiger besucht wird. Genauso gilt es andere Informationen jeglicher Art, wenn diese nicht korrekt im Ranking eingestuft werden und somit vom Nutzer nicht entdeckt werden, ist der Informationsgewinn des Nutzers gleich 0. Da alleine im Jahr 2014, 968.882.453 Websiten\footnote{Anzahl der Webseiten weltweit in den Jahren 1992 bis 2015, Statistika.de, \url{https://de.statista.com/statistik/daten/studie/290274/umfrage/anzahl-der-webseiten-weltweit/}} online für Nutzer verfügbar waren, wovon viele noch einmal mehrere tausend PDF-Dateien oder ähnliches beinhalten, wäre es für einen menschlichen Nutzer nicht mehr möglich alle dieser Seiten auf Informationen zu durchsuchen. Somit ist die Relevanz eines guten Rankings für Informationsgewinnung in den letzten Jahren umso mehr gestiegen. Welches von den drei vorgestellten Information Retrieval Modellen das geeigneteste Ranking ermöglicht, wird folglich geklärt.
+
+\section{Ranking der Modelle in Information Retrieval}
+ Das zuerst vorgestellte Boolsche Modell gibt keine Möglichkeit der Ordnung der Dokumente nach Relevanz. Da hier lediglich eine binäre Kategorisierung der Dokumente in \glqq{} gefunden\grqq{} und \glqq{} nicht gefunden\grqq{} stattfindet, kann daraus nicht hergeleitet werden welches Dokument am meisten mit der Suchanfrage übereinstimmt. Zudem ist dieses Modell für eine Suchanfrage im Internet gänzlich ungeeinget, da hier eine mögliche Übergenererierung von aufgefundenen Dokumenten sehr wahrscheinlich ist. Dieses Modell könnte allerdings hilfreich sein, wenn es darum geht eine sehr große Dokumentenkollektion, wie sie das Internet beispielweise ist, vor der eigentlichen Kategorisierung erst einmal auszudünnen und Dokumente in denen keiner der Suchbegriffe vorkommt zu verwerfen, damit danach eine andere Durchsuchung der Dokumente stattfinden kann.
+
+\paragraph{} Das Vektorraummodell hingegen definiert ein Ranking der zurückgegebenen Dokumente. Hierbei werden alle Dokumente in einer Dokumentenansammlung mit einer Relevanz versehen, was aber wiederhin auch zu einer Übergenerierung von gefundenen Dokumenten führt. Dies könnte allerdings mit einigen zusätzlichen Parametern gelöst werden. Auch die Möglichkeit Dokumente direkt auf Ähnlichkeit überprüfen zu können ist hier ein Vorteil, da so auch Dokumente die zwar den Suchbegriff nicht direkt beinhalten, aber trotzdem themenverwandt sind aufgefunden werden können. Allerdings sollte auch dann beachtet werden dass keine Übergenerierung an Anworten stattfindet.
+
+\paragraph{} Zuletzt werden die Rankingmöglichkeiten der probabilistischen Modelle erörtert. Bei beiden vorgestellten Modellen ist das Ranking ein Bestandteil des Modells. Allerdings ist es hier auch der Fall, dass jedes Dokument für das Ranking klassifiziert ist und auch wird, somit auch hier, genauso wie beim Vektorraummodell weitere Methoden zur Entgegenwirkung von Übergenerierung von Ergebnissen entwickelt werden müssen. Der Ansatz, das Ranking mit Hilfe von Wahrscheinlichkeiten vorzunehmen, wirkt dem grundlegenden und bereits dargestellten Problem der Unsicherheit von Information Retrieval entgegen, weshalb dieser Ansatz wahrscheinlich die zuversichtlichsten Ergebnisse beim Ranking liefert. Um der Übergenerierung von Ergebnissen entgegenzuwirken gibt es einen Ansatz, das \glqq{} Probability-Ranking-Principle\grqq{}, welches, kurz zusammengefasst, mittels einer Kosten-Nutzen Abwägung der Gewichtungen ein Ranking vom zutreffendsten zum am wenigsten übereinstimmenden Dokument in Hinsicht auf Kosten legitimiert. Dieses Verfahren ist ein Vorteil gegenüber den Vektorraummodell, da für dieses Modell keine solche Vorangehensweise definiert ist. Allerdings besagt dies nicht, dass es für das eben genannte Modell nicht auch so ein Verfahren geben könnte, es müsste lediglich erforscht werden.
+
+
+\chapter{Fazit}
+Zusammenfassend kann behauptet werden, dass jedes dieser Modelle den Zweck, für den das Modell konzipiert wurde, erfüllt. Da nicht jedes Modell die Möglichkeit eines Rankings beinhaltet, können im Bezug auf dieses auch nur die Modelle bewertet werden, welche auch dazu konzipiert wurden. Durch die Evaluierung ist allerdings ersichtlich, dass von den drei vorgestellten Modellen das probabilistische Modell wohl das geeignetste für moderne Information Retrieval wäre. Zum einen durch die Eigenschaft mit der Unsicherheit der Information Retrieval am besten umgehen zu können, zum anderen aber auch aus dem Grund durch die Möglichkeit des Probability-Ranking-Principles das Ranking weiter zu verfeinern.
+\paragraph{} Letztendlich handelt es sich bei den vorgestellten Modellen aber lediglich um, wie es der Name bereits offenbart, um mathematische und theoretische Modelle. Die tatsächliche Implementierung solcher Retrieval-Systeme ist weitaus komplizierter als die reine Umsetzung eines Modells. Es müssen viele weitere Faktoren berücksichtigt werden. Die warscheinlich beste Lösung um so ein System umzusetzen wäre die Kombination aus verschiedenen Eigenschaften der drei Modelle. So bietet sich die binäre Kategorisierung des booleschen Modells für eine gröbere Einteilung in relevante und nicht-relevante Dokumente an, die Eigenschaft des Vektorraummodells, Dokumente untereinander vergleichen zu können und die letztendliche Eigenschaft des probabilistischen Modells sowohl das Ranking zu optimieren als auch die beste Lösung um mit dem Problem der Unsicherheit umgehen zu können, an um ein insgesammt vollständigeres und reiferes Modell zu entwickeln. 
+\paragraph{} Zudem muss erwähnt werden, dass dies weder die einzigen, noch die letzten Ansätze sind, die Aufgabe einer perfekten Informationslieferung zu lösen. Mit stets neuen und wachsenden Technologien, zum Beispiel der Nutzung von Ontologien um Texte im Voraus kategorisieren zu können oder auch dem Internet-Of-Things, welches im Grunde weitere Möglichkeiten gibt um Informationen mit Metadaten zu versehen und somit Daten nach Kategorien sortieren zu können, wird es künftig neue Möglichkeiten geben um Informationen zu verarbeiten. Aber auch diese werden mit hoher Wahrscheinlichkeit auf den Gedanken der drei hier vorgestellten Modelle beruhen, weswegen die Erörterung und der Bezug zu einem möglichst gutem Ranking von Bedeutung ist.
+
+%Beispielliteratur
+\begin{thebibliography}{9}
+
+\bibitem{Fachgruppe IR} Fachgruppe Information Retrieval in der Gesellschaft für Informatik (GI), \url{https://fg-retrieval.gi.de/ueber-die-fachgruppe/}
+
+\bibitem{Massimo Melucci} Introduction to Information Retrieval and Quantum Mechanics, Massimo Melucci, Springer-Verlag Berlin Heidelberg, 2015
+
+\bibitem{Schuetze} Introduction to Information Retrieval, Christopher D. Manning, Prabhakar Raghavan, Hinrich Schütze, Cambridge University Press, 2008
+
+\bibitem{Norbert Fuhr} Internet-Suchmaschinen, Norbert Fuhr, 2013
+
+\bibitem{John Lafferty} Document Language Models, Query Models, and Risk Minimization for Information Retrieval, John Lafferty, Chengxiang Zhai, SIGIR, 2012
+
+\bibitem{Salton} Precision Weighting - An Effective Automatic Indexing Method, C.T. Yu, G. Salton, 1975
+
+\bibitem{Tie-Yan Liu} Learning to Rank for Information Retrieval, Tie-Yan Liu, Springer-Verlag Berlin Heidelberg, 2011
+
+\bibitem{Geierhos} Vorlesungsfolien \& Vorlesung Information Retrieval, Michaela Geierhos, Ludwig Maximilians Universität München - Centrum für Informations und Sprachverarbeitung, 2019
+
+
+\end{thebibliography}
+\newpage
+
+% Abbildungsverzeichnis (kann auch nach dem Inhaltsverzeichnis kommen)
+\begin{listoffigures}
+Graphiken entnommen aus: Information Retrieval, Vektorraummodell, Tobias Scheffer, Thomas Vanck, Universität Potsdam - Institut für Informatik - Lehrstuhl Maschinelles Lernen
+
+\end{listoffigures}
+
+\newpage
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[scale=0.9]{EhrenErklaerung.PNG}
+  
+\end{figure}
+
+\end{document}
